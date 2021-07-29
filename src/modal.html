@@ -1,0 +1,29 @@
+<div class="fflex">
+  <div>
+    <sly-field title="Number of images per second"
+               description="Set number of images per second to create video">
+        <el-slider
+          class="ml10 mr10"
+          style="width: 450px"
+          :min="1"
+          :max="50"
+          v-model="state.frameRate"
+          show-input
+          @change="state.frameRate = $event;">
+        </el-slider>
+    </sly-field>
+
+    <sly-field title="Border opacity"
+               description="Set opacity to draw labels in video">
+        <el-slider
+          class="ml10 mr10"
+          style="width: 450px"
+          :min="1"
+          :max="100"
+          v-model="state.opacity"
+          show-input
+          @change="state.opacity = $event;">
+        </el-slider>
+    </sly-field>
+    </div>
+</div>
