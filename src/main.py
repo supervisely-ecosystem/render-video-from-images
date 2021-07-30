@@ -41,6 +41,7 @@ def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
         elif (image_info.width, image_info.height) != image_shape:
             app_logger.warn('Sizes of images in {} dataset are not the same. Check your input data.'.format(dataset_info.name))
             g.my_app.stop()
+            return 
 
     image_names = [image_info.name for image_info in images_infos]
 
