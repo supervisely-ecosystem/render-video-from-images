@@ -22,7 +22,7 @@
 
 ## Overview
 
-App create presentation video from [Supervisely](https://app.supervise.ly) images dataset. You can choose number of images per second for creating a video and opacity value to display images labels on video frames.
+Application create presentation video from [Supervisely](https://app.supervise.ly) images dataset. You can choose number of images per second for creating a video and opacity value to display images labels on video frames.
 
 **Note:**
 
