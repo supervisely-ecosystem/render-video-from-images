@@ -69,8 +69,9 @@ def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
     app_logger.info("Local video path: {!r}".format(video_path))
     sly.fs.ensure_base_path(video_path)
     file_info = api.file.upload(g.TEAM_ID, video_path, file_remote, lambda m: _print_progress(m, upload_progress))
-    api.task._set_custom_output(task_id, file_info.id, sly.fs.get_file_name_with_ext(file_remote),
-                                description="Video from dataset images")
+    api.task.set_output_archive(task_id, file_info.id, sly.fs.get_file_name_with_ext(file_remote))
+    # api.task._set_custom_output(task_id, file_info.id, sly.fs.get_file_name_with_ext(file_remote),
+    #                             description="Video from dataset images")
 
     app_logger.info("Local file successfully uploaded to team files")
 
