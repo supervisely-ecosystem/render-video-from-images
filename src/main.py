@@ -5,19 +5,13 @@ from supervisely_lib.io.fs import mkdir
 import cv2
 
 
-def download_project(api, PROJECT_ID, dest_dir, ds_id):
-    sly.download_project(api, PROJECT_ID, dest_dir, dataset_ids=[ds_id], log_progress=True)
-
-
 @g.my_app.callback("render_video_from_images")
 @sly.timeit
 def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
-
     work_dir = os.path.join(g.storage_dir, g.working_folder)
+    sly.download_project(api, g.PROJECT_ID, work_dir, dataset_ids=[g.DATASET_ID], log_progress=True)
 
-    download_project(api, g.PROJECT_ID, work_dir, g.DATASET_ID)
-
-    meta_json = sly.io.json.load_json_file(os.path.join(work_dir, 'meta.json'))
+    meta_json = sly.json.load_json_file(os.path.join(work_dir, 'meta.json'))
     meta = sly.ProjectMeta.from_json(meta_json)
 
     dataset_info = api.dataset.get_info_by_id(g.DATASET_ID)
@@ -25,16 +19,14 @@ def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
     imgs_path = os.path.join(dataset_path, 'img')
     anns_path = os.path.join(dataset_path, 'ann')
 
-    RESULT_DIR = os.path.join(g.storage_dir, g.working_folder)
-    mkdir(RESULT_DIR)
-    video_path = os.path.join(RESULT_DIR, dataset_info.name + g.video_ext)
-    file_remote = "/{}/{}_{}_{}".format(g.result_folder, g.TASK_ID, g.DATASET_ID, dataset_info.name + g.video_ext)
+    result_dir = os.path.join(g.storage_dir, g.working_folder)
+    mkdir(result_dir)
+    video_path = os.path.join(result_dir, dataset_info.name + g.video_ext)
+    file_remote = "/{}/{}/{}_{}".format(g.result_folder, g.TASK_ID, g.DATASET_ID, dataset_info.name + g.video_ext)
 
     images_infos = api.image.get_list(g.DATASET_ID, sort='name')
-
     if len(images_infos) == 0:
-        app_logger.warn('There is no images in {} dataset'.format(dataset_info.name))
-
+        app_logger.warn('There are no images in {} dataset'.format(dataset_info.name))
     for idx, image_info in enumerate(images_infos):
         if idx == 0:
             image_shape = (image_info.width, image_info.height)
@@ -44,12 +36,11 @@ def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
             return 
 
     image_names = [image_info.name for image_info in images_infos]
-
     video = cv2.VideoWriter(video_path, cv2.VideoWriter_fourcc(*'MP4V'), int(g.frame_rate), image_shape)
     for curr_im_name in image_names:
         curr_im_path = os.path.join(imgs_path, curr_im_name)
         curr_ann_path = os.path.join(anns_path, curr_im_name + g.ann_ext)
-        ann_json = sly.io.json.load_json_file(curr_ann_path)
+        ann_json = sly.json.load_json_file(curr_ann_path)
         ann = sly.Annotation.from_json(ann_json, meta)
         img = cv2.imread(curr_im_path)
         ann.draw_pretty(img, opacity=g.opacity / 100)
@@ -70,9 +61,7 @@ def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
     sly.fs.ensure_base_path(video_path)
     file_info = api.file.upload(g.TEAM_ID, video_path, file_remote, lambda m: _print_progress(m, upload_progress))
     api.task.set_output_archive(task_id, file_info.id, sly.fs.get_file_name_with_ext(file_remote))
-
-    app_logger.info("Local file successfully uploaded to team files")
-
+    app_logger.info("File successfully uploaded to team files")
     g.my_app.stop()
 
 
