@@ -1,5 +1,5 @@
 <div align="center" markdown>
-<img src="https://i.imgur.com/BqAJpRi.png"/>
+<img src="https://i.imgur.com/2o4AKdp.png"/>
 
 
 
@@ -22,22 +22,16 @@
 
 ## Overview
 
-Application creates video from [Supervisely](https://app.supervise.ly) images in the given dataset. You can choose number of images per second for creating a video, labl opacity and thickness of label borders to display images labels on video frames.
+Application creates video from [Supervisely](https://app.supervise.ly) images in the given dataset. You can choose number of images per second for creating a video, labl opacity and thickness of label borders to display images labels on video frames. Every image in the given dataset must be the same size. If one of the images is different from the others, video creating will crash. If images size in dataset are different, you can use [resize-images](https://app.supervise.ly/ecosystem/apps/resize-images) application to resize images to the same size.
 
-**Note:**
+**Example:**
 
-Images sizes in dataset must be the same. If one of the images sizes is different from the others, video creating will crash. If images sizes in dataset are different, you can use [resize-images](https://app.supervise.ly/ecosystem/apps/resize-images) application to resize images to the same size.
+<p align="center">
+<img src="https://i.imgur.com/awCTgKX.png" width="600"/>
+</p>
 
-
-gallery
-
-<img src="https://i.imgur.com/awCTgKX.png"/>
-
-gif
-
-<img src="https://i.imgur.com/9D6b0f1.mp4"/>
-
-
+<p align="center"> <a href="https://imgur.com/9D6b0f1">Result video</a> </p>
+  
 ## How To Run 
 **Step 1**: Add app to your team from [Ecosystem](https://app.supervise.ly/apps/ecosystem/render-presentation-video-from-dataset) if it is not there.
 
@@ -45,15 +39,11 @@ gif
 
 <img src="https://i.imgur.com/cFSJIpi.png"/>
 
-**Step 3**: Select video creating parameters.
+**Step 3**: Select video parameters and press the `Run` button.
 
-<img src="https://i.imgur.com/Iwi6xbu.png" width="500px"/>
+<img src="https://i.imgur.com/7CtG24p.png" width="500"/>
 
 ## How to use
-
-modal window
-
-<img src="https://i.imgur.com/7CtG24p.png"/>
 
 After running the application, you will be redirected to the `Tasks` page. Once application processing has finished, your link for downloading will be available. Click on the `file name` to download it.
 
