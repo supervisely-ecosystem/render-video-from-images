@@ -4,15 +4,15 @@
   "categories": [
     "Videos"
   ],
-  "description": "Render video from images dataset",
+  "description": "Creates video from images in dataset with selected frame rate and configurable label opacity",
   "docker_image": "supervisely/base-py-sdk:6.1.93",
   "main_script": "src/main.py",
   "modal_template": "src/modal.html",
-  "modal_template_state": {"frameRate": 1, "opacity": 50},
+  "modal_template_state": {"frameRate": 1, "opacity": 50, "thickness": 2},
   "task_location": "workspace_tasks",
   "isolate": true,
   "headless": true,
-  "icon": "https://i.imgur.com/BcwuD8m.png",
+  "icon": "https://i.imgur.com/u7lHZDt.png",
   "icon_background": "#FFFFFF",
   "context_menu": {
     "target": ["images_dataset"],
