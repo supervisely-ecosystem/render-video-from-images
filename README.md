@@ -37,7 +37,7 @@ Application creates video from [Supervisely](https://app.supervise.ly) images in
 
 **Step 2**: Open context menu of dataset -> `Run App` -> `Transform` -> `Render video from images` 
 
-<img src="https://i.imgur.com/cFSJIpi.png"/>
+<img src="https://i.imgur.com/Iwi6xbu.png" width="700"/>
 
 **Step 3**: Select video parameters and press the `Run` button.
 
