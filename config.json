@@ -12,7 +12,7 @@
   "task_location": "workspace_tasks",
   "isolate": true,
   "headless": true,
-  "icon": "https://i.imgur.com/BcwuD8m.png",
+  "icon": "https://i.imgur.com/u7lHZDt.png",
   "icon_background": "#FFFFFF",
   "context_menu": {
     "target": ["images_dataset"],
