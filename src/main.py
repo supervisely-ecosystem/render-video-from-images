@@ -3,12 +3,28 @@ import globals as g
 import supervisely_lib as sly
 from supervisely_lib.io.fs import mkdir
 import cv2
+from supervisely_lib.imaging import image as sly_image
+import numpy as np
+
+
+def draw_pretty(ann, bitmap, color = None, thickness: int = 1,
+                opacity: float = 0.5, draw_tags: bool = False, output_path: str = None) -> None:
+    height, width = bitmap.shape[:2]
+    vis_filled = np.zeros((height, width, 3), np.uint8)
+    ann.draw(vis_filled, color=color, thickness=thickness, draw_tags=draw_tags)
+    vis = cv2.addWeighted(bitmap, 1, vis_filled, opacity, 0)
+    np.copyto(bitmap, vis)
+    if thickness > 0:
+        ann.draw_contour(bitmap, color=color, thickness=thickness, draw_tags=draw_tags)
+    if output_path:
+        sly_image.write(output_path, bitmap)
 
 
 @g.my_app.callback("render_video_from_images")
 @sly.timeit
 def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
     work_dir = os.path.join(g.storage_dir, g.working_folder)
+    mkdir(work_dir, True)
     sly.download_project(api, g.PROJECT_ID, work_dir, dataset_ids=[g.DATASET_ID], log_progress=True)
 
     meta_json = sly.json.load_json_file(os.path.join(work_dir, 'meta.json'))
@@ -43,7 +59,7 @@ def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
         ann_json = sly.json.load_json_file(curr_ann_path)
         ann = sly.Annotation.from_json(ann_json, meta)
         img = cv2.imread(curr_im_path)
-        ann.draw_pretty(img, opacity=g.label_opacity / 100, thickness=g.border_thickness)
+        draw_pretty(ann, img, opacity=g.label_opacity / 100, thickness=g.border_thickness)
         video.write(img)
     video.release()
 
