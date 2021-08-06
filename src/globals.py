@@ -19,4 +19,5 @@ ann_ext = '.json'
 logger = sly.logger
 
 frame_rate = os.environ['modal.state.frameRate']
-opacity = int(os.environ['modal.state.opacity'])
+label_opacity = int(os.environ['modal.state.opacity'])
+border_thickness = int(os.environ['modal.state.thickness'])

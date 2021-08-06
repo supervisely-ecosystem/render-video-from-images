@@ -43,7 +43,8 @@ def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
         ann_json = sly.json.load_json_file(curr_ann_path)
         ann = sly.Annotation.from_json(ann_json, meta)
         img = cv2.imread(curr_im_path)
-        ann.draw_pretty(img, opacity=g.opacity / 100)
+        ann.draw(img, opacity=g.label_opacity / 100)
+        ann.draw_contour(img, thickness=g.border_thickness)
         video.write(img)
     video.release()
 
