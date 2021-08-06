@@ -1,10 +1,10 @@
+import cv2
 import os
+import numpy as np
 import globals as g
 import supervisely_lib as sly
 from supervisely_lib.io.fs import mkdir
-import cv2
 from supervisely_lib.imaging import image as sly_image
-import numpy as np
 
 
 def draw_pretty(ann, bitmap, color = None, thickness: int = 1,
