@@ -52,3 +52,8 @@ After running the application, you will be redirected to the `Tasks` page. Once 
 **Note:** You can also find your converted project in: `Team Files`->`video_from_images`->`<taskId>` -> `<datasetId>_<datasetName>.mp4`
 
 <img src="https://i.imgur.com/NDEGgnO.png"/>
+
+### Watch Tutorial Video
+<a data-key="sly-embeded-video-link" href="https://youtu.be/Xc7iC4glDEo" data-video-code="Xc7iC4glDEo">
+    <img src="https://i.imgur.com/1W3CIbo.png" alt="SLY_EMBEDED_VIDEO_LINK"  style="max-width:100%;">
+</a>
