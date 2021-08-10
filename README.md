@@ -22,7 +22,7 @@
 
 ## Overview
 
-Application creates video from [Supervisely](https://app.supervise.ly) images in the given dataset. You can choose number of images per second for creating a video, label opacity and thickness of label borders to display images labels on video frames. Every image in the given dataset must be the same size. If one of the images is different from the others, video creating will crash, you can use [`Resize images`](https://app.supervise.ly/ecosystem/apps/resize-images) application to resize images to the same size.
+Application creates video from images in the given dataset. You can choose number of images per second for creating a video, label opacity and thickness of label borders to display images labels on video frames. Every image in the given dataset must be the same size. If one of the images is different from the others, video creating will crash, you can use [`Resize images`](https://app.supervise.ly/ecosystem/apps/resize-images) application to resize images to the same size.
 
 **Example:**
 
@@ -49,7 +49,7 @@ After running the application, you will be redirected to the `Tasks` page. Once 
 
 <img src="https://i.imgur.com/crpZvnU.png"/>
 
-**Note:** You can also find your converted project in: `Team Files`->`video_from_images`->`<taskId>` -> `<datasetId>_<datasetName>.mp4`
+**Note:** You can also find your converted video in: `Team Files`->`video_from_images`->`<taskId>` -> `<datasetId>_<datasetName>.mp4`
 
 <img src="https://i.imgur.com/NDEGgnO.png"/>
 
