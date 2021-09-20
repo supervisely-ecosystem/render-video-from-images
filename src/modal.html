@@ -1,12 +1,12 @@
 <div class="fflex">
     <div>
-        <sly-field title="Number of images per second"
-                   description="Set number of images per second to create video">
+        <sly-field title="Video FPS"
+                   description="Set video frames per second value">
             <el-slider
                     class="ml10 mr10"
                     style="width: 450px"
                     :min="1"
-                    :max="10"
+                    :max="120"
                     v-model="state.frameRate"
                     show-input
                     @change="state.frameRate = $event;">
