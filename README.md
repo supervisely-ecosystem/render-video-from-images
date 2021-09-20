@@ -8,7 +8,7 @@
 <p align="center">
   <a href="#Overview">Overview</a> •
   <a href="#How-To-Use">How To Use</a> •
-  <a href="#How-To-Use">Results</a> •
+  <a href="#Results">Results</a> •
   <a href="#Demo">Demo</a> 
 </p>
 
