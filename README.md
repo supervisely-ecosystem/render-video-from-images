@@ -7,8 +7,9 @@
 
 <p align="center">
   <a href="#Overview">Overview</a> •
-  <a href="#How-To-Run">How To Run</a> •
-  <a href="#How-To-Use">How To Use</a>
+  <a href="#How-To-Use">How To Use</a> •
+  <a href="#How-To-Use">Results</a> •
+  <a href="#Demo">Demo</a> 
 </p>
 
 [![](https://img.shields.io/badge/supervisely-ecosystem-brightgreen)](https://ecosystem.supervise.ly/apps/supervisely-ecosystem/render-video-from-images)
@@ -20,40 +21,48 @@
 
 </div>
 
-## Overview
+# Overview
 
-Application creates video from images in the given dataset. You can choose number of images per second for creating a video, label opacity and thickness of label borders to display images labels on video frames. Every image in the given dataset must be the same size. If one of the images is different from the others, video creating will crash, you can use [`Resize images`](https://app.supervise.ly/ecosystem/apps/resize-images) application to resize images to the same size.
+Convert image **dataset** to **.mp4 downloadable video**. 
 
-**Example:**
 
-<p align="center">
-<img src="https://i.imgur.com/awCTgKX.png" width="600"/>
-</p>
+Application key points:  
+- Images in dataset must be same the same size (you can use [`Resize images`](https://app.supervise.ly/ecosystem/apps/resize-images))
+- Customize FPS
+- Customize labels opacity and thickness
+ 
+# How To Use 
 
-<p align="center"> <a href="https://imgur.com/9D6b0f1">Result video</a> </p>
-  
-## How To Run 
-**Step 1**: Add app to your team from [Ecosystem](https://app.supervise.ly/apps/ecosystem/render-video-from-images) if it is not there.
+1. Add [Render video from images](https://app.supervise.ly/apps/ecosystem/render-video-from-images) to your team from Ecosystem.
 
-**Step 2**: Open context menu of dataset -> `Run App` -> `Transform` -> `Render video from images` 
+<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/render-video-from-images" src="https://imgur.com/PboVK7T.png" width="350px" style='padding-bottom: 20px'/>  
 
-<img src="https://i.imgur.com/Iwi6xbu.png" width="700"/>
+2. Run app from the context menu of **Images Project** -> **Dataset**:
 
-**Step 3**: Select video parameters and press the `Run` button.
+<img src="https://imgur.com/0U710SI.png" width="100%"/>
 
+3. Select parameters and press the `Run` button.
+ 
+ 
+<div align="center" markdown>
 <img src="https://i.imgur.com/7CtG24p.png" width="500"/>
+</div>
 
-## How to use
 
-After running the application, you will be redirected to the `Tasks` page. Once application processing has finished, your link for downloading will be available. Click on the `file name` to download it.
+# Results
+
+After running the application, you will be redirected to the `Tasks` page.  
+Once application processing has finished, your link for downloading will be available.  
+Click on the `file name` to download it.
 
 <img src="https://i.imgur.com/crpZvnU.png"/>
 
-**Note:** You can also find your converted video in: `Team Files`->`video_from_images`->`<taskId>` -> `<datasetId>_<datasetName>.mp4`
+**Note:** You can also find your converted video in:  
+`Team Files`->`video_from_images`->`<taskId>` -> `<datasetId>_<datasetName>.mp4`
 
 <img src="https://i.imgur.com/NDEGgnO.png"/>
 
-### Watch Tutorial Video
+# Demo
 <a data-key="sly-embeded-video-link" href="https://youtu.be/Xc7iC4glDEo" data-video-code="Xc7iC4glDEo">
     <img src="https://i.imgur.com/1W3CIbo.png" alt="SLY_EMBEDED_VIDEO_LINK"  style="max-width:100%;">
 </a>
