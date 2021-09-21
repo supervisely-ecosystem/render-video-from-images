@@ -63,6 +63,6 @@ Click on the `file name` to download it.
 <img src="https://i.imgur.com/NDEGgnO.png"/>
 
 # Demo
-<a data-key="sly-embeded-video-link" href="https://youtu.be/Xc7iC4glDEo" data-video-code="Xc7iC4glDEo">
+<a data-key="sly-embeded-video-link" href="https://youtu.be/RuyccC1ioss" data-video-code="RuyccC1ioss">
     <img src="https://i.imgur.com/1W3CIbo.png" alt="SLY_EMBEDED_VIDEO_LINK"  style="max-width:100%;">
 </a>
