@@ -27,7 +27,7 @@ Convert image **dataset** to **.mp4 downloadable video**.
 
 
 Application key points:  
-- Images in dataset must be same the same size (you can use [`Resize images`](https://app.supervise.ly/ecosystem/apps/resize-images))
+- Images in dataset must be the **same size** (you can use [`Resize images`](https://app.supervise.ly/ecosystem/apps/resize-images))
 - Customize FPS
 - Customize labels opacity and thickness
  
