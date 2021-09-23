@@ -33,7 +33,7 @@ Application key points:
  
 # How To Use 
 
-1. Add [Render video from images](https://app.supervise.ly/apps/ecosystem/render-video-from-images) to your team from Ecosystem.
+1. Add [Render video from images](https://ecosystem.supervise.ly/apps/render-video-from-images) to your team from Ecosystem.
 
 <img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/render-video-from-images" src="https://imgur.com/PboVK7T.png" width="350px" style='padding-bottom: 20px'/>  
 
