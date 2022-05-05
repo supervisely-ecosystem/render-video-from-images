@@ -8,14 +8,21 @@
   "docker_image": "supervisely/base-py-sdk:6.1.94",
   "main_script": "src/main.py",
   "modal_template": "src/modal.html",
-  "modal_template_state": {"frameRate": 30, "opacity": 50, "thickness": 2},
+  "modal_template_state": {
+    "frameRate": 30,
+    "opacity": 50,
+    "thickness": 2
+  },
   "task_location": "workspace_tasks",
   "isolate": true,
   "headless": true,
   "icon": "https://i.imgur.com/u7lHZDt.png",
   "icon_background": "#FFFFFF",
   "context_menu": {
-    "target": ["images_dataset"],
+    "target": [
+      "images_dataset"
+    ],
     "context_category": "Transform"
-  }
+  },
+  "poster": "https://i.imgur.com/2o4AKdp.png"
 }
