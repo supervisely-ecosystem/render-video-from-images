@@ -5,7 +5,8 @@
     "Videos"
   ],
   "description": "Creates video from images in dataset with selected frame rate and configurable label opacity",
-  "docker_image": "supervisely/base-py-sdk:6.1.94",
+  "docker_image": "supervisely/base-py-sdk:6.20.0",
+  "instance_version": "6.4.57",
   "main_script": "src/main.py",
   "modal_template": "src/modal.html",
   "modal_template_state": {
