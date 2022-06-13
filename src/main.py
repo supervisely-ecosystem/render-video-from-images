@@ -1,8 +1,8 @@
 import cv2
 import os
 import globals as g
-import supervisely_lib as sly
-from supervisely_lib.io.fs import mkdir
+import supervisely as sly
+from supervisely.io.fs import mkdir
 
 
 @g.my_app.callback("render_video_from_images")
@@ -32,9 +32,10 @@ def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
         if idx == 0:
             image_shape = (image_info.width, image_info.height)
         elif (image_info.width, image_info.height) != image_shape:
-            app_logger.warn('Sizes of images in {} dataset are not the same. Check your input data.'.format(dataset_info.name))
+            app_logger.warn(
+                'Sizes of images in {} dataset are not the same. Check your input data.'.format(dataset_info.name))
             g.my_app.stop()
-            return 
+            return
 
     image_names = [image_info.name for image_info in images_infos]
     video = cv2.VideoWriter(video_path, cv2.VideoWriter_fourcc(*'MP4V'), int(g.frame_rate), image_shape)
@@ -49,6 +50,7 @@ def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
     video.release()
 
     upload_progress = []
+
     def _print_progress(monitor, upload_progress):
         if len(upload_progress) == 0:
             upload_progress.append(sly.Progress(message="Upload {!r}".format(file_remote),
@@ -60,7 +62,8 @@ def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
     app_logger.info("Local video path: {!r}".format(video_path))
     sly.fs.ensure_base_path(video_path)
     file_info = api.file.upload(g.TEAM_ID, video_path, file_remote, lambda m: _print_progress(m, upload_progress))
-    api.task.set_output_archive(task_id, file_info.id, sly.fs.get_file_name_with_ext(file_remote))
+    api.task.set_output_archive(task_id=task_id, file_id=file_info.id,
+                                file_name=sly.fs.get_file_name_with_ext(file_remote), file_url=file_info.storage_path)
     app_logger.info("File successfully uploaded to team files")
     g.my_app.stop()
 
