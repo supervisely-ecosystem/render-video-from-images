@@ -23,7 +23,8 @@ def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
     result_dir = os.path.join(g.storage_dir, g.working_folder)
     mkdir(result_dir)
     video_path = os.path.join(result_dir, dataset_info.name + g.video_ext)
-    file_remote = "/{}/{}/{}_{}".format(g.result_folder, g.TASK_ID, g.DATASET_ID, dataset_info.name + g.video_ext)
+    file_remote = os.path.join(
+        sly.team_files.RECOMMENDED_EXPORT_PATH, "{}/{}/{}_{}".format(g.result_folder, g.TASK_ID, g.DATASET_ID, dataset_info.name + g.video_ext))
 
     images_infos = api.image.get_list(g.DATASET_ID, sort='name')
     if len(images_infos) == 0:
