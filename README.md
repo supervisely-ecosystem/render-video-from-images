@@ -34,17 +34,17 @@ Application key points:
 
 1. Add [Render video from images](https://ecosystem.supervise.ly/apps/render-video-from-images) to your team from Ecosystem.
 
-<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/render-video-from-images" src="https://imgur.com/PboVK7T.png" width="350px" style='padding-bottom: 20px'/>  
+<img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/render-video-from-images" src="media/htu1.png" width="350px" style='padding-bottom: 20px'/>  
 
 2. Run app from the context menu of **Images Project** -> **Dataset**:
 
-<img src="https://imgur.com/0U710SI.png" width="100%"/>
+<img src="media/htu2.png" width="100%"/>
 
 3. Select parameters and press the `Run` button.
  
  
 <div align="center" markdown>
-<img src="https://i.imgur.com/7CtG24p.png" width="500"/>
+<img src="media/htu3.png" width="500"/>
 </div>
 
 
@@ -54,14 +54,14 @@ After running the application, you will be redirected to the `Tasks` page.
 Once application processing has finished, your link for downloading will be available.  
 Click on the `file name` to download it.
 
-<img src="https://i.imgur.com/crpZvnU.png"/>
+<img src="media/r1.png"/>
 
 **Note:** You can also find your converted video in:  
 `Team Files`->`video_from_images`->`<taskId>` -> `<datasetId>_<datasetName>.mp4`
 
-<img src="https://i.imgur.com/NDEGgnO.png"/>
+<img src="media/r2.png"/>
 
 # Demo
 <a data-key="sly-embeded-video-link" href="https://youtu.be/RuyccC1ioss" data-video-code="RuyccC1ioss">
-    <img src="https://i.imgur.com/1W3CIbo.png" alt="SLY_EMBEDED_VIDEO_LINK"  style="max-width:100%;">
+    <img src="media/d1.png" alt="SLY_EMBEDED_VIDEO_LINK"  style="max-width:100%;">
 </a>
