@@ -1,33 +1,33 @@
 {
-  "name": "Render video from images",
-  "type": "app",
-  "categories": [
-    "images",
-    "videos",
-    "modalities",
-    "export",
-    "data operations"
-  ],
-  "description": "Creates video from images in dataset with selected frame rate and configurable label opacity",
-  "docker_image": "supervisely/base-py-sdk:6.72.55",
-  "instance_version": "6.4.57",
-  "main_script": "src/main.py",
-  "modal_template": "src/modal.html",
-  "modal_template_state": {
-    "frameRate": 30,
-    "opacity": 50,
-    "thickness": 2
-  },
-  "task_location": "workspace_tasks",
-  "isolate": true,
-  "headless": true,
-  "icon": "https://i.imgur.com/u7lHZDt.png",
-  "icon_background": "#FFFFFF",
-  "context_menu": {
-    "target": [
-      "images_dataset"
+    "name": "Render video from images",
+    "type": "app",
+    "categories": [
+        "images",
+        "videos",
+        "modalities",
+        "export",
+        "data operations"
     ],
-    "context_category": "Transform"
-  },
-  "poster": "https://user-images.githubusercontent.com/48245050/182636583-4e02ba76-0418-43c4-8adc-47deaaff54eb.png"
+    "description": "Creates video from images in dataset with selected frame rate and configurable label opacity",
+    "docker_image": "supervisely/import-export:0.0.2",
+    "instance_version": "6.4.57",
+    "main_script": "src/main.py",
+    "modal_template": "src/modal.html",
+    "modal_template_state": {
+        "frameRate": 30,
+        "opacity": 50,
+        "thickness": 2
+    },
+    "task_location": "workspace_tasks",
+    "isolate": true,
+    "headless": true,
+    "icon": "https://i.imgur.com/u7lHZDt.png",
+    "icon_background": "#FFFFFF",
+    "context_menu": {
+        "target": [
+            "images_dataset"
+        ],
+        "context_category": "Transform"
+    },
+    "poster": "https://user-images.githubusercontent.com/48245050/182636583-4e02ba76-0418-43c4-8adc-47deaaff54eb.png"
 }
