@@ -9,7 +9,7 @@
         "data operations"
     ],
     "description": "Creates video from images in dataset with selected frame rate and configurable label opacity",
-    "docker_image": "supervisely/import-export:0.0.2",
+    "docker_image": "supervisely/data-operations:0.0.1",
     "instance_version": "6.4.57",
     "main_script": "src/main.py",
     "modal_template": "src/modal.html",
