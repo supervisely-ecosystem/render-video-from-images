@@ -12,11 +12,11 @@
   <a href="#Demo">Demo</a> 
 </p>
 
-[![](https://img.shields.io/badge/supervisely-ecosystem-brightgreen)](https://ecosystem.supervise.ly/apps/supervisely-ecosystem/render-video-from-images)
-[![](https://img.shields.io/badge/slack-chat-green.svg?logo=slack)](https://supervise.ly/slack)
+[![](https://img.shields.io/badge/supervisely-ecosystem-brightgreen)](https://ecosystem.supervisely.com/apps/supervisely-ecosystem/render-video-from-images)
+[![](https://img.shields.io/badge/slack-chat-green.svg?logo=slack)](https://supervisely.com/slack)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/supervisely-ecosystem/render-video-from-images)
-[![views](https://app.supervise.ly/img/badges/views/supervisely-ecosystem/render-video-from-images.png)](https://supervise.ly)
-[![runs](https://app.supervise.ly/img/badges/runs/supervisely-ecosystem/render-video-from-images.png)](https://supervise.ly)
+[![views](https://app.supervisely.com/img/badges/views/supervisely-ecosystem/render-video-from-images.png)](https://supervisely.com)
+[![runs](https://app.supervisely.com/img/badges/runs/supervisely-ecosystem/render-video-from-images.png)](https://supervisely.com)
 
 </div>
 
@@ -26,13 +26,13 @@ Convert image **dataset** to **.mp4 downloadable video**.
 
 
 Application key points:  
-- Images in dataset must be the **same size** (you can use [`Resize images`](https://app.supervise.ly/ecosystem/apps/resize-images))
+- Images in dataset must be the **same size** (you can use [`Resize images`](https://app.supervisely.com/ecosystem/apps/resize-images))
 - Customize FPS
 - Customize labels opacity and thickness
  
 # How To Use 
 
-1. Add [Render video from images](https://ecosystem.supervise.ly/apps/render-video-from-images) to your team from Ecosystem.
+1. Add [Render video from images](https://ecosystem.supervisely.com/apps/render-video-from-images) to your team from Ecosystem.
 
 <img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/render-video-from-images" src="https://imgur.com/PboVK7T.png" width="350px" style='padding-bottom: 20px'/>  
 
