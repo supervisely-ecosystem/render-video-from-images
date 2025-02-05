@@ -62,16 +62,8 @@ def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
         upload_progress[0].set_current_value(monitor.bytes_read)
 
     app_logger.info("Local video path: {!r}".format(video_path))
-    sly.fs.ensure_base_path(video_path)
-    loop = sly.fs.get_or_create_event_loop()
-    try:
-        size = os.path.getsize(video_path)
-        progress = sly.tqdm_sly(desc=f"Upload {file_remote}", total=size)
-        coro = api.file.upload_async(g.TEAM_ID, video_path, file_remote, progress_cb=progress)
-        file_info = loop.run_until_complete(coro)
-    except Exception as e:
-        app_logger.warning(f"Can't upload video to team files with async method. Error: {repr(e)}. Trying sync method.")
-        file_info = api.file.upload(g.TEAM_ID, video_path, file_remote, lambda m: _print_progress(m, upload_progress))
+    sly.fs.ensure_base_path(video_path) 
+    file_info = api.file.upload(g.TEAM_ID, video_path, file_remote, lambda m: _print_progress(m, upload_progress))
     api.task.set_output_archive(task_id=task_id, file_id=file_info.id,
                                 file_name=sly.fs.get_file_name_with_ext(file_remote), file_url=file_info.storage_path)
     app_logger.info("File successfully uploaded to team files")
