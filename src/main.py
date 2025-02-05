@@ -3,6 +3,7 @@ import os
 import globals as g
 import supervisely as sly
 from supervisely.io.fs import mkdir
+from supervisely.project.download import download_async_or_sync
 
 
 @g.my_app.callback("render_video_from_images")
@@ -10,7 +11,7 @@ from supervisely.io.fs import mkdir
 def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
     work_dir = os.path.join(g.storage_dir, g.working_folder)
     mkdir(work_dir, True)
-    sly.download_project(api, g.PROJECT_ID, work_dir, dataset_ids=[g.DATASET_ID], log_progress=True)
+    download_async_or_sync(api, g.PROJECT_ID, work_dir, dataset_ids=[g.DATASET_ID], log_progress=True)
 
     meta_json = sly.json.load_json_file(os.path.join(work_dir, 'meta.json'))
     meta = sly.ProjectMeta.from_json(meta_json)
@@ -28,12 +29,12 @@ def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
 
     images_infos = api.image.get_list(g.DATASET_ID, sort='name')
     if len(images_infos) == 0:
-        app_logger.warn('There are no images in {} dataset'.format(dataset_info.name))
+        app_logger.warning('There are no images in {} dataset'.format(dataset_info.name))
     for idx, image_info in enumerate(images_infos):
         if idx == 0:
             image_shape = (image_info.width, image_info.height)
         elif (image_info.width, image_info.height) != image_shape:
-            app_logger.warn(
+            app_logger.warning(
                 'Sizes of images in {} dataset are not the same. Check your input data.'.format(dataset_info.name))
             g.my_app.stop()
             return
@@ -62,7 +63,13 @@ def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
 
     app_logger.info("Local video path: {!r}".format(video_path))
     sly.fs.ensure_base_path(video_path)
-    file_info = api.file.upload(g.TEAM_ID, video_path, file_remote, lambda m: _print_progress(m, upload_progress))
+    loop = sly.fs.get_or_create_event_loop()
+    try:
+        coro = api.file.upload_async(g.TEAM_ID, video_path, file_remote, progress_cb=lambda m: _print_progress(m, upload_progress))
+        file_info = loop.run_until_complete(coro)
+    except Exception as e:
+        app_logger.warning("Can't upload video to team files with async method. Trying sync method.")
+        file_info = api.file.upload(g.TEAM_ID, video_path, file_remote, lambda m: _print_progress(m, upload_progress))
     api.task.set_output_archive(task_id=task_id, file_id=file_info.id,
                                 file_name=sly.fs.get_file_name_with_ext(file_remote), file_url=file_info.storage_path)
     app_logger.info("File successfully uploaded to team files")
