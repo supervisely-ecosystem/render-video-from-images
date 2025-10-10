@@ -12,7 +12,7 @@
   <a href="#Demo">Demo</a> 
 </p>
 
-[![](https://img.shields.io/badge/supervisely-ecosystem-brightgreen)](https://ecosystem.supervisely.com/apps/supervisely-ecosystem/render-video-from-images)
+[![](https://img.shields.io/badge/supervisely-ecosystem-brightgreen)](../../../../supervisely-ecosystem/render-video-from-images)
 [![](https://img.shields.io/badge/slack-chat-green.svg?logo=slack)](https://supervisely.com/slack)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/supervisely-ecosystem/render-video-from-images)
 [![views](https://app.supervisely.com/img/badges/views/supervisely-ecosystem/render-video-from-images.png)](https://supervisely.com)
@@ -32,7 +32,7 @@ Application key points:
  
 # How To Use 
 
-1. Add [Render video from images](https://ecosystem.supervisely.com/apps/render-video-from-images) to your team from Ecosystem.
+1. Add [Render video from images](../../../../supervisely-ecosystem/render-video-from-images) to your team from Ecosystem.
 
 <img data-key="sly-module-link" data-module-slug="supervisely-ecosystem/render-video-from-images" src="https://imgur.com/PboVK7T.png" width="350px" style='padding-bottom: 20px'/>  
 
