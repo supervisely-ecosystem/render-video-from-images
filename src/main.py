@@ -59,16 +59,13 @@ def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
         curr_ann_path = os.path.join(anns_path, curr_im_name + g.ann_ext)
 
         try:
-            if os.path.exists(curr_ann_path):
-                ann_json = sly.json.load_json_file(curr_ann_path)
-                ann = sly.Annotation.from_json(ann_json, meta)
-            else:
-                ann = sly.Annotation(img_size=(image_info.height, image_info.width))
+            ann_json = sly.json.load_json_file(curr_ann_path)
+            ann = sly.Annotation.from_json(ann_json, meta)
         except Exception as e:
             app_logger.warning(
                 f"Failed to load annotation for image {curr_im_name}: {e}"
             )
-            continue
+            ann = sly.Annotation(img_size=(image_info.height, image_info.width))
         img = cv2.imread(curr_im_path)
         ann.draw_pretty(
             img, opacity=g.label_opacity / 100, thickness=g.border_thickness
