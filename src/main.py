@@ -4,11 +4,11 @@ import globals as g
 import supervisely as sly
 from supervisely.io.fs import mkdir
 from supervisely.project.download import download_async_or_sync
+from supervisely import handle_exceptions
 
-
-@g.my_app.callback("render_video_from_images")
 @sly.timeit
-def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
+@handle_exceptions(has_ui=False)
+def render_video_from_images(api: sly.Api, task_id):
     work_dir = os.path.join(g.storage_dir, g.working_folder)
     mkdir(work_dir, True)
     download_async_or_sync(
@@ -35,19 +35,18 @@ def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
 
     images_infos = api.image.get_list(g.DATASET_ID, sort="name")
     if len(images_infos) == 0:
-        app_logger.warning(
+        sly.logger.warning(
             "There are no images in {} dataset".format(dataset_info.name)
         )
     for idx, image_info in enumerate(images_infos):
         if idx == 0:
             image_shape = (image_info.width, image_info.height)
         elif (image_info.width, image_info.height) != image_shape:
-            app_logger.warning(
+            sly.logger.warning(
                 "Sizes of images in {} dataset are not the same. Check your input data.".format(
                     dataset_info.name
                 )
             )
-            g.my_app.stop()
             return
 
     image_names = [image_info.name for image_info in images_infos]
@@ -62,7 +61,7 @@ def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
             ann_json = sly.json.load_json_file(curr_ann_path)
             ann = sly.Annotation.from_json(ann_json, meta)
         except Exception as e:
-            app_logger.warning(
+            sly.logger.warning(
                 f"Failed to load annotation for image {curr_im_name}: {e}"
             )
             ann = sly.Annotation(img_size=(image_info.height, image_info.width))
@@ -81,13 +80,13 @@ def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
                 sly.Progress(
                     message="Upload {!r}".format(file_remote),
                     total_cnt=monitor.len,
-                    ext_logger=app_logger,
+                    ext_logger=sly.logger,
                     is_size=True,
                 )
             )
         upload_progress[0].set_current_value(monitor.bytes_read)
 
-    app_logger.info("Local video path: {!r}".format(video_path))
+    sly.logger.info("Local video path: {!r}".format(video_path))
     sly.fs.ensure_base_path(video_path)
     file_info = api.file.upload(
         g.TEAM_ID,
@@ -101,16 +100,14 @@ def render_video_from_images(api: sly.Api, task_id, context, state, app_logger):
         file_name=sly.fs.get_file_name_with_ext(file_remote),
         file_url=file_info.storage_path,
     )
-    app_logger.info("File successfully uploaded to team files")
-    g.my_app.stop()
+    sly.logger.info("File successfully uploaded to team files")
 
 
 def main():
     sly.logger.info(
         "Script arguments", extra={"TEAM_ID": g.TEAM_ID, "WORKSPACE_ID": g.WORKSPACE_ID}
     )
-    g.my_app.run(initial_events=[{"command": "render_video_from_images"}])
-
+    render_video_from_images(g.api, g.TASK_ID)
 
 if __name__ == "__main__":
     sly.main_wrapper("main", main)
